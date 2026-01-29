@@ -33,7 +33,6 @@ public class opportunityTriggerHandler17_Test
             insert opps;
         }
 
-        // 🔥 Ensure summary recalculation runs
         opportunityTriggerHandler17.afterHandler();
 
         Manager_Pipeline_Summary__c summary = [

@@ -11,12 +11,12 @@ public class opportunityTriggerHandler6
                 accids.add(nopps.AccountId);
             }
         }
-            if(accids.isEmpty())
-            {
+        if(accids.isEmpty())
+        {
                 return;
-            }
+        }
         
-            map<id,Account> accmap = new map<id,Account>([select id,Last_Quoted_Date__c from Account where id in :accids]);
+        map<id,Account> accmap = new map<id,Account>([select id,Last_Quoted_Date__c from Account where id in :accids]);
         
         for(Account acc : accmap.Values())
         {

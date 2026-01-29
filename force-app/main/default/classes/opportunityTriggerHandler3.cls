@@ -11,7 +11,6 @@ public class opportunityTriggerHandler3
         for(Opportunity opp : oppn)
         {
             Opportunity opps = oppo.get(opp.Id);
-            
             if(opps.StageName == 'Closed Won')
             {
                 if(opps.Amount != opp.Amount)

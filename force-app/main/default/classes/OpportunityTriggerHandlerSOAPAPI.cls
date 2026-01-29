@@ -1,18 +1,18 @@
-public class OpportunityTriggerHandlerSOAPAPI {
+public class OpportunityTriggerHandlerSOAPAPI 
+{
 
-    public static void afterUpdateHandler(List<Opportunity> newList,
-                                   Map<Id,Opportunity> oldMap) {
-
+    public static void afterUpdateHandler(List<Opportunity> newList,Map<Id,Opportunity> oldMap) 
+    {
         List<Id> ids = new List<Id>();
-
-        for(Opportunity o : newList){
-            if(o.StageName=='Closed Won' &&
-               oldMap.get(o.Id).StageName!='Closed Won'){
+        for(Opportunity o : newList)
+        {
+            if(o.StageName=='Closed Won' &&oldMap.get(o.Id).StageName!='Closed Won')
+            {
                 ids.add(o.Id);
             }
         }
-
-        if(!ids.isEmpty()){
+        if(!ids.isEmpty())
+        {
             System.enqueueJob(new ContractQueueableSOAPAPI(ids));
         }
     }
