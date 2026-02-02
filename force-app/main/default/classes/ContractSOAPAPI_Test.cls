@@ -4,13 +4,11 @@ public class ContractSOAPAPI_Test {
     @IsTest
     static void testSoapSuccess() {
 
-        // 1️⃣ Register SOAP mock
         Test.setMock(
             WebServiceMock.class,
             new ContractMockSOAPAPI()
         );
 
-        // 2️⃣ Test data
         Account acc = new Account(Name = 'Test Account');
         insert acc;
 
@@ -23,16 +21,13 @@ public class ContractSOAPAPI_Test {
         );
         insert opp;
 
-        // 3️⃣ Start async context
         Test.startTest();
 
-        // Move to Closed Won (this triggers SOAP logic)
         opp.StageName = 'Closed Won';
         update opp;
 
         Test.stopTest();
 
-        // 4️⃣ Verify result
         Opportunity updatedOpp = [
             SELECT External_Contract_Id__c
             FROM Opportunity

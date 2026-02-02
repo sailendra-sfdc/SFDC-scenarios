@@ -25,7 +25,6 @@ implements Queueable, Database.AllowsCallouts {
 
             try {
 
-                // SOAP Call
                 String contractId =
                     service.createContract(
                         opp.Name,
@@ -33,7 +32,6 @@ implements Queueable, Database.AllowsCallouts {
                         opp.Account.Name
                     );
 
-                // Update Opp
                 toUpdate.add(new Opportunity(
                     Id = opp.Id,
                     External_Contract_Id__c = contractId
@@ -41,7 +39,6 @@ implements Queueable, Database.AllowsCallouts {
 
             } catch (Exception e) {
 
-                // SOAP Fault logging
                 logs.add(new Contract_Integration_Log__c(
                     Opportunity__c = opp.Id,
                     Error_Message__c = e.getMessage()

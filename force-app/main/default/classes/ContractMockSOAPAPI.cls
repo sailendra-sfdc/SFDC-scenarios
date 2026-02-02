@@ -18,7 +18,6 @@ public class ContractMockSOAPAPI implements WebServiceMock {
 
         res.contractId = 'CONTRACT123';
 
-        // VERY IMPORTANT KEY
         response.put('response_x', res);
     }
 }

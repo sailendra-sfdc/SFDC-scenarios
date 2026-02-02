@@ -42,11 +42,9 @@ public with sharing class CreateAccountWithContact {
             return results;
         }
         
-        // Process each request
         for (Request req : requests) {
             Response res = new Response();
             
-            // Validate required fields
             if (req.accountName == null || req.accountName.trim() == '') {
                 res.success = false;
                 res.message = 'Account name is required';
@@ -69,7 +67,6 @@ public with sharing class CreateAccountWithContact {
             }
             
             try {
-                // Create Account
                 Account acc = new Account(
                     Name = req.accountName.trim()
                 );
@@ -86,7 +83,6 @@ public with sharing class CreateAccountWithContact {
                 Id accountId = accResult.getId();
                 res.accountId = accountId;
                 
-                // Create Contact
                 Contact con = new Contact(
                     FirstName = req.contactFirstName.trim(),
                     LastName = req.contactLastName.trim(),
