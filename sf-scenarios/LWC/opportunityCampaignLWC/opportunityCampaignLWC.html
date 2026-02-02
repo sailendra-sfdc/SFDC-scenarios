@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Opportunity Editor">
+
+        <!-- LDS Form -->
+        <lightning-record-edit-form
+            object-api-name="Opportunity"
+            record-id={recordId}
+            onsuccess={handleSuccess}>
+
+            <lightning-input-field field-name="Amount"></lightning-input-field>
+            <lightning-input-field field-name="CloseDate"></lightning-input-field>
+
+            <lightning-button type="submit" label="Save" variant="brand"></lightning-button>
+        </lightning-record-edit-form>
+
+        <hr/>
+
+        <!-- Campaign Members -->
+        <template if:true={campaignMembers}>
+            <p><b>Campaign Members</b></p>
+            <template for:each={campaignMembers} for:item="cm">
+                <p key={cm.Id}>
+                    {cm.Contact.Name} - {cm.Campaign.Name}
+                </p>
+            </template>
+        </template>
+
+    </lightning-card>
+</template>
