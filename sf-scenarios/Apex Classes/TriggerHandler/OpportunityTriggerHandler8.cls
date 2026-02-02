@@ -68,7 +68,6 @@ public class OpportunityTriggerHandler8 {
 
     public static void afterInsertHandler(List<OpportunityLineItem> lineItems) {
 
-        // 1️⃣ Collect PricebookEntryIds
         Set<Id> pricebookEntryIds = new Set<Id>();
         for (OpportunityLineItem oli : lineItems) {
             if (oli.PricebookEntryId != null) {
@@ -80,7 +79,6 @@ public class OpportunityTriggerHandler8 {
             return;
         }
 
-        // 2️⃣ Map PricebookEntry → Product2
         Map<Id, Id> pbeToProductMap = new Map<Id, Id>();
         for (PricebookEntry pbe : [
             SELECT Id, Product2Id
@@ -94,7 +92,6 @@ public class OpportunityTriggerHandler8 {
             return;
         }
 
-        // 3️⃣ Query Product_Margin__c
         Map<Id, Product_Margin__c> productCostMap =
             new Map<Id, Product_Margin__c>(
                 [

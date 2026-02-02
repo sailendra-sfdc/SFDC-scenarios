@@ -2,7 +2,6 @@ public class CalculatorSoapTestUtilSOAPAPI {
 
     public static Integer callAdd() {
 
-        // Correct SOAP stub class
         tempuriOrg2SOAPAPI.CalculatorSoap service =
             new tempuriOrg2SOAPAPI.CalculatorSoap();
 

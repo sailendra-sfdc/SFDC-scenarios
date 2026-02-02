@@ -1,7 +1,6 @@
 <template>
     <lightning-card title="Opportunity Editor">
 
-        <!-- LDS Form -->
         <lightning-record-edit-form
             object-api-name="Opportunity"
             record-id={recordId}
@@ -15,7 +14,6 @@
 
         <hr/>
 
-        <!-- Campaign Members -->
         <template if:true={campaignMembers}>
             <p><b>Campaign Members</b></p>
             <template for:each={campaignMembers} for:item="cm">

@@ -8,7 +8,6 @@ public class LeadConvertQueueableLWC2 implements Queueable, Database.AllowsCallo
 
     public void execute(QueueableContext qc) {
 
-        // 1️⃣ REST Call
         HttpRequest req = new HttpRequest();
         req.setEndpoint('callout:Messaging_API/post');
         req.setMethod('POST');
@@ -22,13 +21,11 @@ public class LeadConvertQueueableLWC2 implements Queueable, Database.AllowsCallo
             throw new AuraHandledException('Notification failed');
         }
 
-        // 2️⃣ Parse JSON
         Map<String,Object> data =
             (Map<String,Object>) JSON.deserializeUntyped(res.getBody());
 
         String messageId = 'MSG-' + String.valueOf(leadId).substring(0,5);
 
-        // 3️⃣ Convert Lead
         Database.LeadConvert lc = new Database.LeadConvert();
         lc.setLeadId(leadId);
         lc.setConvertedStatus('Closed - Converted');
@@ -37,7 +34,6 @@ public class LeadConvertQueueableLWC2 implements Queueable, Database.AllowsCallo
         Database.LeadConvertResult result =
             Database.convertLead(lc);
 
-        // 4️⃣ Update Account
         if(result.isSuccess()){
             update new Account(
                 Id = result.getAccountId(),
