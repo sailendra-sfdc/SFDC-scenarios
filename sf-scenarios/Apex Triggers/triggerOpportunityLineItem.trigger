@@ -1,7 +1,5 @@
-trigger triggerOpportunityLineItem on OpportunityLineItem (after insert)
-{
-    if(trigger.isAfter && trigger.isInsert)
-    {
-        opportunityTriggerHandler8.afterInsertHandler(trigger.new);
+trigger OpportunityLineItemTrigger on OpportunityLineItem (before insert) {
+    if (Trigger.isBefore && Trigger.isInsert) {
+        OpportunityLineItemHandler8.beforeInsertHandler(Trigger.new);
     }
 }
